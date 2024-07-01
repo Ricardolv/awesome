@@ -9,4 +9,5 @@ urlpatterns = [
     path('post/crete/', post_create_view, name='post-create'),
     path('post/delete/<pk>/', post_delete_view, name='post-delete'),
     path('post/edit/<pk>/', post_edit_view, name='post-edit'),
+    path('post/page/<pk>/', post_page_view, name='post'),
 ]
