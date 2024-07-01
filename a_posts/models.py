@@ -9,6 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=500)
     image = models.URLField(max_length=500)
     body = models.TextField()
+    tags = models.ManyToManyField('Tag')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -16,3 +17,11 @@ class Post(models.Model):
     
     class Meta:
         ordering = ['-created_at']
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=20)
+    slug = models.SlugField(max_length=20, unique=True)
+
+    def __str__(self):
+        return str(self.name)
