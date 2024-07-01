@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from .forms import *
 from .models import *
 from bs4 import BeautifulSoup
@@ -42,7 +42,7 @@ def post_create_view(request):
 
 
 def post_delete_view(request, pk):
-    post = Post.objects.get(id=pk)
+    post = get_object_or_404(Post, id=pk)
 
     if request.method == "POST":
         post.delete()
@@ -53,7 +53,7 @@ def post_delete_view(request, pk):
 
 
 def post_edit_view(request, pk):
-    post = Post.objects.get(id=pk)
+    post = get_object_or_404(Post, id=pk)
     form = PostEditForm(instance=post)
 
     if request.method == "POST":
@@ -71,6 +71,6 @@ def post_edit_view(request, pk):
 
 
 def post_page_view(request, pk):
-    post = Post.objects.get(id=pk)
+    post = get_object_or_404(Post, id=pk)
 
     return render(request, 'a_posts/post_page.html', {'post': post})
