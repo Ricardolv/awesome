@@ -4,6 +4,9 @@ start-django:
 migrate-django:
 	source .venv/bin/activate && python3 manage.py makemigrations && python3 manage.py migrate
 
+collectstatic:
+	source .venv/bin/activate && python3 manage.py collectstatic
+
 update-requirements:
 	source .venv/bin/activate && python3 -m pip freeze > requirements.txt
 
